@@ -9,6 +9,7 @@ def test_mr1():
     """
     MR1: Reversing the input list should not change the sorted output.
     """
+    print("=== MR1: Reversing input ===\n")
     test_groups = [
         [4, 2, 5, 1],
         [9, 8, 7, 6],
@@ -22,15 +23,20 @@ def test_mr1():
         src_out = quick_sort.quick_sort(source)
         follow_out = quick_sort.quick_sort(followup)
         result = check_equal(src_out, follow_out)
-        print(f"MR1 - Test Group {i}: {'PASS' if result else 'FAIL'}")
-    print()
 
+        print(f"Test Group {i}")
+        print(f"Original:      {source}")
+        print(f"Reversed:      {followup}")
+        print(f"Sorted Output: {src_out}")
+        print(f"Sorted Reversed: {follow_out}")
+        print(f"Result: {'PASS' if result else 'FAIL'}\n")
 
 def test_mr2():
     """
     MR2: Adding a constant to each element should preserve relative order.
-    (i.e., sorted indices remain the same even if values are shifted)
+    (i.e., the order of elements in sorted output should remain consistent)
     """
+    print("=== MR2: Adding a constant ===\n")
     test_groups = [
         ([3, 1, 2], 5),
         ([10, 5, 15, 0], 10),
@@ -43,12 +49,19 @@ def test_mr2():
         followup = [x + c for x in source]
         src_sorted = quick_sort.quick_sort(source)
         follow_sorted = quick_sort.quick_sort(followup)
+
         # Compare the relative ordering (using ranks)
         src_ranks = [source.index(x) for x in src_sorted]
         follow_ranks = [followup.index(x) for x in follow_sorted]
         result = src_ranks == follow_ranks
-        print(f"MR2 - Test Group {i}: {'PASS' if result else 'FAIL'}")
-    print()
+
+        print(f"Test Group {i}")
+        print(f"Original:         {source}")
+        print(f"Shifted (+{c}):    {followup}")
+        print(f"Sorted Original:  {src_sorted}")
+        print(f"Sorted Shifted:   {follow_sorted}")
+        print(f"Relative Ranks Match: {result}")
+        print(f"Result: {'PASS' if result else 'FAIL'}\n")
 
 
 if __name__ == "__main__":
